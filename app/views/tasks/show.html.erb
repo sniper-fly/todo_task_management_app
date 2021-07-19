@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div>
+  <strong>title:</strong>
+  <%= @task.title %>
+</div>
+
+<div>
+  <strong>content:</strong>
+  <%= simple_format(@task.content) %>
+</div>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
