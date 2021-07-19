@@ -49,6 +49,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'letter_opener_web', '~> 1.0'
   gem 'rexml'
+  gem 'devise'
 end
 
 group :test do
