@@ -7,7 +7,7 @@
 </div>
 
 <div>
-  期限： <%= @task.deadline %>>
+  期限： <%= @task.deadline %>
 </div>
 
 <div>
@@ -19,5 +19,7 @@
 </div>
 
 <%= link_to '一覧へ戻る', tasks_path %>
-<%= link_to '編集', edit_task_path(@task) %> |
-<%= link_to 'アサイン', tasks_path %>
+<% if @task.is_created_by?(current_user) %>
+  <%= link_to '編集', edit_task_path(@task) %> |
+  <%= link_to 'アサイン', tasks_path %>
+<% end %>

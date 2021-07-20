@@ -18,4 +18,8 @@ class Task < ApplicationRecord
     STATUS_NAME[self.status]
   end
 
+  def is_created_by?(user)
+    self.author == user
+  end
+
 end
