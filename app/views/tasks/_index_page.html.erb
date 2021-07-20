@@ -2,7 +2,7 @@
   <h2><%= task.title %></h2>
   <span><%= task.content %></span><br>
   <span>期限：<%= task.deadline %></span><br>
-  <span>担当者：<%= task.user %></span><br>
+  <span>担当者：<%= task.user&.email %></span><br>
   <span>ステータス：<%= task.get_status_str %></span><br>
   <span><%= link_to '詳細', task %></span>
   <% if task.is_created_by?(current_user) %>

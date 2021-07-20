@@ -12,7 +12,7 @@
 
 <% if local_assigns[:show] %>
   <div>
-    担当者： <%= @task.user %>
+    担当者： <%= @task.user&.email %>
   </div>
 <% end %>
 
