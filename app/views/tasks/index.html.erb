@@ -1,5 +1,7 @@
 <h1>Tasks</h1>
 
+<%= link_to 'New Task', new_task_path %>
+
 <table>
   <thead>
     <tr>
@@ -15,14 +17,10 @@
         <td><%= task.deadline %></td>
         <td><%= task.get_status_str %></td>
         <td><%= task.created_at %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', task %></td>
+        <td><%= link_to '編集', edit_task_path(task) %></td>
+        <td><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
