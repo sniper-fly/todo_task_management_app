@@ -8,5 +8,10 @@
   <%= simple_format(@task.content) %>
 </div>
 
+<div>
+  <strong>status:</strong>
+  <%= @task.get_status_str %>
+</div>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

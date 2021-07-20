@@ -11,6 +11,7 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
+        <td><%= task.get_status_str %></td>
         <td><%= task.content %></td>
         <td><%= task.created_at %></td>
         <td><%= link_to 'Show', task %></td>
