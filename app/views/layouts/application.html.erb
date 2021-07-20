@@ -11,6 +11,23 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <h1 id="header_title">
+      <a href="/">タスク管理アプリ</a>
+    </h1>
+    <%= link_to 'マイタスク', 'hoge' %>
+    <%= link_to 'タスク一覧', tasks_path %>
+    <%= link_to 'ユーザ設定', edit_user_registration_path %>
+    <% if user_signed_in? %>
+      <%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { confirm: "サインアウトしてもよろしいですか？" } %>
+    <% else %>
+      <%= link_to 'サインイン', new_user_session_path %>
+    <% end %>
+    <% if user_signed_in? %>
+      <span>ようこそ<%= current_user.name.nil? ? current_user.email : current_user.name %>さん</span>
+    <% end %>
+  </header>
+
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
