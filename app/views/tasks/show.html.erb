@@ -1,21 +1,21 @@
-<div>
-  <strong>title:</strong>
+<h1>
   <%= @task.title %>
-</div>
+</h1>
 
 <div>
-  <strong>content:</strong>
   <%= simple_format(@task.content) %>
 </div>
 
 <div>
-  <strong>deadline:</strong>
-  <%= @task.deadline %>>
+  期限： <%= @task.deadline %>>
 </div>
 
 <div>
-  <strong>status:</strong>
-  <%= @task.get_status_str %>
+  担当者： <%= @task.user %>
+</div>
+
+<div>
+  ステータス： <%= @task.get_status_str %>
 </div>
 
 <%= link_to '一覧へ戻る', tasks_path %>
