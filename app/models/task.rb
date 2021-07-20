@@ -22,4 +22,10 @@ class Task < ApplicationRecord
     self.author == user
   end
 
+  scope :index_all, -> {
+    all
+      .order(created_at: :asc)
+      .includes(:user)
+  }
+
 end

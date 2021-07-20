@@ -15,7 +15,7 @@
     <h1 id="header_title">
       <a href="/">タスク管理アプリ</a>
     </h1>
-    <%= link_to 'マイタスク', 'hoge' %>
+    <%= link_to 'マイタスク', tasks_mine_path %>
     <%= link_to 'タスク一覧', tasks_path %>
     <%= link_to 'ユーザ設定', edit_user_registration_path %>
     <% if user_signed_in? %>
