@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy assign ]
+  before_action :set_task, only: %i[ show edit update destroy assign update_assignment]
   before_action :authenticate_user!
 
   # GET /tasks or /tasks.json
@@ -66,16 +66,26 @@ class TasksController < ApplicationController
   end
 
   def update_assignment
+    if @task.update(assignment_params)
+      redirect_to task_url(@task.id)
+    else
+      render :assign, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.require(:task).permit(:title, :content, :status, :deadline)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.require(:task).permit(:title, :content, :status, :deadline)
+  end
+
+  def assignment_params
+    params.require(:task).permit(:user_id)
+  end
 end
