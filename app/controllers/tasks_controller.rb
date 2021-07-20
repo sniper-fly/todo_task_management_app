@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy assign ]
   before_action :authenticate_user!
 
   # GET /tasks or /tasks.json
@@ -60,6 +60,12 @@ class TasksController < ApplicationController
 
   def my_tasks
     @tasks = Task.index_all.where(author_id: current_user)
+  end
+
+  def assign
+  end
+
+  def update_assignment
   end
 
   private
