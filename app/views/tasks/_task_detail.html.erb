@@ -1,0 +1,21 @@
+<h1>
+  <%= @task.title %>
+</h1>
+
+<div>
+  <%= simple_format(@task.content) %>
+</div>
+
+<div>
+  期限： <%= @task.deadline %>
+</div>
+
+<% if local_assigns[:show] %>
+  <div>
+    担当者： <%= @task.user %>
+  </div>
+<% end %>
+
+<div>
+  ステータス： <%= @task.get_status_str %>
+</div>

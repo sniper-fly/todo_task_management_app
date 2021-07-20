@@ -1,25 +1,7 @@
-<h1>
-  <%= @task.title %>
-</h1>
-
-<div>
-  <%= simple_format(@task.content) %>
-</div>
-
-<div>
-  期限： <%= @task.deadline %>
-</div>
-
-<div>
-  担当者： <%= @task.user %>
-</div>
-
-<div>
-  ステータス： <%= @task.get_status_str %>
-</div>
+<%= render 'task_detail', show: true %>
 
 <%= link_to '一覧へ戻る', tasks_path %>
 <% if @task.is_created_by?(current_user) %>
   <%= link_to '編集', edit_task_path(@task) %> |
-  <%= link_to 'アサイン', tasks_path %>
+  <%= link_to 'アサイン', assign_task_path %>
 <% end %>
