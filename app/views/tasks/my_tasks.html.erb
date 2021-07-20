@@ -1,14 +1,4 @@
 <h1>マイタスク</h1>
 
-<% @tasks.each do |task| %>
-  <h2><%= task.title %></h2>
-  <span><%= task.content %></span><br>
-  <span>期限：<%= task.deadline %></span><br>
-  <span>担当者：<%= task.user %></span><br>
-  <span>ステータス：<%= task.get_status_str %></span><br>
-  <span><%= link_to '詳細', task %></span>
-  <% if task.is_created_by?(current_user) %>
-    <span><%= link_to '編集', edit_task_path(task) %></span>
-    <span><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
-  <% end %>
-<% end %>
+<%= link_to 'New Task', new_task_path %>
+<%= render 'index_page' %>
