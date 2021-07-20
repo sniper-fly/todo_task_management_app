@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
-  belongs_to :user
-  belongs_to :worker, class_name: 'User', foreign_key: 'worker_id', required: false
+  belongs_to :user, required: false
+  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
 
   enum statuses: {
     waiting: 0,
