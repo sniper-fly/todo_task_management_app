@@ -39,6 +39,11 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <% if local_assigns[:edit] %>
+      <%= form.submit '更新する' %>
+      <%= link_to '一覧へ戻る', tasks_path %>
+    <% else %>
+      <%= form.submit '登録する' %>
+    <% end %>
   </div>
 <% end %>
