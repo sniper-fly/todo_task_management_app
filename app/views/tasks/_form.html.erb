@@ -21,6 +21,18 @@
     <%= form.text_area :content %>
   </div>
 
+  <div class="field">
+    <%= form.label :Status %>
+    <%= form.radio_button :status, Task.statuses[:waiting] %>
+    <%= form.label "未対応" %>
+    <%= form.radio_button :status, Task.statuses[:doing] %>
+    <%= form.label "対応中" %>
+    <% if local_assigns[:edit] %>
+      <%= form.radio_button :status, Task.statuses[:done] %>
+      <%= form.label "完了" %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
