@@ -11,7 +11,7 @@
     <%= f.collection_select :user_id, User.all, :id, :email %>
   </div>
 
-  <%= f.submit 'アサインする' %>
+  <%= f.submit 'アサインする', class: "btn btn-success" %>
 <% end %>
 
 <%= render 'task_detail' %>
