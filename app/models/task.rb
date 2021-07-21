@@ -22,6 +22,13 @@ class Task < ApplicationRecord
     self.author == user
   end
 
+  def is_outdated?
+    if self.deadline.nil?
+      return false
+    end
+    return self.deadline < Time.current
+  end
+
   scope :index_all, -> {
     all
       .order(created_at: :asc)
