@@ -1,4 +1,7 @@
 <div class="row">
+  <% if @tasks.empty? %>
+    <div>There seems to be no tasks....</div>
+  <% end %>
   <% @tasks.each do |task| %>
 
     <div class="surroundings col-xs-12 col-md-6">
