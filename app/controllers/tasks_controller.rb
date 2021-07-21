@@ -4,7 +4,17 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.index_all
+    if params[:show_comp_task].present?
+      @tasks = Task.all.order(created_at: :asc).includes(:user)
+    elsif params[:list_desc].present?
+      @tasks = Task.all.order(created_at: :desc).includes(:user).where.not(status: Task.statuses[:done])
+    elsif params[:list_outdated_task].present?
+      @tasks = Task.index_all.where(deadline: ..Time.current)
+    elsif params[:list_tasks_todo].present?
+      @tasks = Task.index_all.where(user_id: current_user)
+    else
+      @tasks = Task.index_all
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json

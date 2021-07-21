@@ -1,5 +1,9 @@
 <div class="container">
   <h1>タスク一覧</h1>
+  <%= link_to '完了タスクも表示する', tasks_path(show_comp_task: true) %><br>
+  <%= link_to '降順に並び替える', tasks_path(list_desc: true) %><br>
+  <%= link_to '期限切れタスクを表示', tasks_path(list_outdated_task: true) %><br>
+  <%= link_to '自分に割り当てられたタスクを表示', tasks_path(list_tasks_todo: true) %>
 
   <%= render 'index_page' %>
 </div>
