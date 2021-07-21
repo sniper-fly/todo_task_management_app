@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Title %>
+    <strong><%= form.label :Title %></strong>
     <%= form.text_field :title, class: "text-field" %>
   </div>
 
   <div class="field">
-    <%= form.label :Content %>
+    <strong><%= form.label :Content %></strong>
     <%= form.text_area :content, class: "text-field" %>
   </div>
 
   <div class="field">
-    <%= form.label :Deadline %>
+    <strong><%= form.label :Deadline %><br></strong>
     <%= form.datetime_select :deadline %>
   </div>
 
   <div class="field">
-    <%= form.label :Status %>
+    <strong><%= form.label :Status %></strong>
     <%= form.radio_button :status, Task.statuses[:waiting] %>
     <%= form.label "未対応" %>
     <%= form.radio_button :status, Task.statuses[:doing] %>
