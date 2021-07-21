@@ -1,6 +1,6 @@
 <%= render 'task_detail', show: true %>
 
-<%= link_to '一覧へ戻る', tasks_path %>
+<%= link_to '一覧へ戻る', tasks_path, class: "btn btn-outline-secondary" %>
 <% if @task.is_created_by?(current_user) %>
   <%= link_to '編集', edit_task_path(@task) %>
   <%= link_to 'アサイン', assign_task_path, class: "btn btn-success text-white" %>
