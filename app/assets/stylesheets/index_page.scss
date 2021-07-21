@@ -1,0 +1,37 @@
+.surroundings {
+  padding: 10px;
+}
+
+.task-border-outdated {
+  border-style: solid;
+  border-color: #d7b7b4;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+.task-title-outdated {
+  background-color: #efcecb;
+  padding: 10px 20px 10px 20px;
+  color: #7c4947;
+}
+
+.task-body-outdated {
+  padding: 10px 20px 10px 20px;
+}
+
+.task-border-normal {
+  border-style: solid;
+  border-color: #8fbf91;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+.task-title-normal {
+  background-color: #baf6bc;
+  padding: 10px 20px 10px 20px;
+  color: #4d694d;
+}
+
+.task-body-normal {
+  padding: 10px 20px 10px 20px;
+}
