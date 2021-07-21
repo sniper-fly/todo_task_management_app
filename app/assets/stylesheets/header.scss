@@ -1,11 +1,37 @@
 header {
+  width: 100%;
   background-color: #fafafa;
   border-bottom: solid 1px #eee;
-  height: 60px;
+  padding: 20px 0px 10px 10px;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+}
+
+li {
+  margin: 0 20px 0 0;
+  font-size: 14px;
+}
+
+li#sign-in-out {
+  margin: 0 0 0 30px;
+  font-size: 14px;
+}
+
+nav {
+  margin: 0 auto 0 0;
+}
+
+nav#welcome-msg {
+  margin: 0 0 0 auto;
 }
 
 .header-col {
-  margin: 10px;
   text-decoration: none;
   vertical-align: middle;
 }
@@ -13,18 +39,8 @@ header {
 #header-title {
   font-size: 30px;
   text-decoration: none;
-  vertical-align: middle;
-  margin: 30px;
 }
 
 .sign-in-out-col {
-  margin: 30px;
   text-decoration: none;
-  vertical-align: middle;
-}
-
-.welcome-msg {
-  margin: 15px;
-  float: right;
-  vertical-align: middle;
 }

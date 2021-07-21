@@ -11,18 +11,33 @@
 </head>
 
 <header>
-  <a href="/", id="header-title" >タスク管理アプリ</a>
-  <%= link_to 'マイタスク', tasks_mine_path, class: "header-col" %>
-  <%= link_to 'タスク一覧', tasks_path, class: "header-col" %>
-  <%= link_to 'ユーザ設定', edit_user_registration_path, class: "header-col" %>
-  <% if user_signed_in? %>
-    <%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { confirm: "サインアウトしてもよろしいですか？" }, class: "sign-in-out-col" %>
-  <% else %>
-    <%= link_to 'サインイン', new_user_session_path, class: "sign-in-out-col" %>
-  <% end %>
-  <% if user_signed_in? %>
-    <span class="welcome-msg">ようこそ<%= current_user.name.nil? ? current_user.email : current_user.name %>さん</span>
-  <% end %>
+  <h2>
+    <a href="/" , id="header-title">タスク管理アプリ</a>
+  </h2>
+  <nav>
+    <ul>
+      <li id="unordered-list">
+      <li><%= link_to 'マイタスク', tasks_mine_path, class: "header-col" %></li>
+      <li><%= link_to 'タスク一覧', tasks_path, class: "header-col" %></li>
+      <li><%= link_to 'ユーザ設定', edit_user_registration_path, class: "header-col" %></li>
+      <li id="sign-in-out">
+        <% if user_signed_in? %>
+          <%= link_to 'サインアウト', destroy_user_session_path, method: :delete, data: { confirm: "サインアウトしてもよろしいですか？" }, class: "sign-in-out-col" %>
+        <% else %>
+          <%= link_to 'サインイン', new_user_session_path, class: "sign-in-out-col" %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+  <nav id="welcome-msg">
+    <ul>
+      <% if user_signed_in? %>
+        <li>
+          <span>ようこそ<%= current_user.name.nil? ? current_user.email : current_user.name %>さん</span>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
 </header>
 
 <body>
