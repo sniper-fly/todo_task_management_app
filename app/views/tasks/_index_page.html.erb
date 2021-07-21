@@ -1,17 +1,34 @@
-<% @tasks.each do |task| %>
+<div class="row">
+  <% @tasks.each do |task| %>
+    <div class="surroundings col-xs-12 col-md-6">
 
-  <div class="<%= task.is_outdated? ? "outdated-task" : "normal-task" %>">
+      <% if task.is_outdated? %>
+        <div class="task-border-outdated">
+          <div class="task-title-outdated"><%= task.title %></div>
+          <div class="task-body-outdated">
+      <% else %>
+        <div class="task-border-normal">
+          <div class="task-title-normal"><%= task.title %></div>
+          <div class="task-body-normal">
+      <% end %>
 
-  <h2 class="hoge"><%= task.title %></h2>
-  <span><%= task.content %></span><br>
-  <span>期限：<%= task.deadline %></span><br><br>
-  <span>担当者：<%= task.user&.email %></span><br><br>
-  <span>ステータス：<%= task.get_status_str %></span><br>
-  <span><%= link_to '詳細', task, class: "btn btn-outline-secondary" %></span>
-  <% if task.is_created_by?(current_user) %>
-    <span><%= link_to '編集', edit_task_path(task), class: "btn btn-info text-black" %></span>
-    <span><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-black" %></span>
+      <%# task_class_suffix = task.is_outdated? ? "outdated" : "normal" %>
+<!--      <div class="task-border-<%#= task_class_suffix %>">-->
+<!--        <div class="task-title-<%#= task_class_suffix %>">-->
+<!--        <div class="task-body-<%#= task_class_suffix %>">-->
+
+          <span><%= task.content %></span><br>
+          <span>期限：<%= task.deadline %></span><br><br>
+          <span>担当者：<%= task.user&.email %></span><br><br>
+          <span>ステータス：<%= task.get_status_str %></span><br>
+          <span><%= link_to '詳細', task, class: "btn btn-outline-secondary" %></span>
+          <% if task.is_created_by?(current_user) %>
+            <span><%= link_to '編集', edit_task_path(task), class: "btn btn-info text-black" %></span>
+            <span><%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-black" %></span>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
   <% end %>
-
-  </div>
-<% end %>
+</div>
