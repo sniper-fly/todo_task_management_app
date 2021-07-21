@@ -28,7 +28,7 @@
 
   <div class="field">
     <strong><%= form.label :Status %></strong>
-    <%= form.radio_button :status, Task.statuses[:waiting] %>
+    <%= form.radio_button :status, Task.statuses[:waiting], checked: true %>
     <%= form.label "未対応" %>
     <%= form.radio_button :status, Task.statuses[:doing] %>
     <%= form.label "対応中" %>

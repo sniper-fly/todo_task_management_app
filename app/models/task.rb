@@ -33,6 +33,7 @@ class Task < ApplicationRecord
     all
       .order(created_at: :asc)
       .includes(:user)
+      .where.not(status: Task.statuses[:done])
   }
 
 end
