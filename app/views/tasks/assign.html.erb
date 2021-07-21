@@ -1,17 +1,17 @@
 <h1>アサイン</h1>
-
 <%= form_for @task, url: { action: 'update_assignment' } do |f| %>
-  <div>
-    <span>現在アサインされているユーザ</span><br>
-    <span><%= @task.user_id.nil? ? "誰にもアサインされていません" : @task.user_id %></span>
-  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <span>現在アサインされているユーザ</span><br>
+      <span><%= @task.user_id.nil? ? "誰にもアサインされていません" : @task.user.name %></span>
+    </div>
 
-  <div>
-    <span>新しくアサインするユーザ</span><br>
-    <%= f.collection_select :user_id, User.all, :id, :email %>
+    <div class="col-xs-12 col-md-6">
+      <span>新しくアサインするユーザ</span><br>
+      <%= f.collection_select :user_id, User.all, :id, :email, {}, { class: "assigner-selection" } %>
+    </div>
   </div>
-
-  <%= f.submit 'アサインする', class: "btn btn-success" %>
+  <%= f.submit 'アサインする', class: "btn btn-success assign-btn" %>
 <% end %>
 
 <%= render 'task_detail' %>
