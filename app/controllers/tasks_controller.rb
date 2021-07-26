@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    eval(tasks_index)
+    @tasks = eval(generate_method_chain_str_to_get_specific_tasks)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -89,23 +89,25 @@ class TasksController < ApplicationController
     params.require(:task).permit(:user_id)
   end
 
-  def tasks_index
-    meta_tasks_str = "@tasks = Task.all"
+  def generate_method_chain_str_to_get_specific_tasks
+    method_chain_str = "Task.all"
+
     if params[:comp_tasks].present?
       # do nothing
     else
-      meta_tasks_str += ".where.not(status: Task.statuses[:done])"
+      method_chain_str += ".where.not(status: Task.statuses[:done])"
     end
     if params[:list_desc].present?
-      meta_tasks_str += ".order(created_at: :desc)"
+      method_chain_str += ".order(created_at: :desc)"
     end
     if params[:tasks_mine].present?
-      meta_tasks_str += ".where(user_id: current_user)"
+      method_chain_str += ".where(user_id: current_user)"
     end
     if params[:outdated_tasks]
-      meta_tasks_str += ".where(deadline: ..Time.current)"
+      method_chain_str += ".where(deadline: ..Time.current)"
     end
-    meta_tasks_str += ".includes(:user)"
-    return meta_tasks_str
+
+    method_chain_str += ".includes(:user)"
+    return method_chain_str
   end
 end
