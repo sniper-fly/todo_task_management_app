@@ -92,15 +92,15 @@ class TasksController < ApplicationController
   def generate_method_chain_str_to_get_specific_tasks
     method_chain_str = "Task.all"
 
-    if params[:comp_tasks].present?
+    if params[:comp_tasks]
       # do nothing
     else
       method_chain_str += ".where.not(status: Task.statuses[:done])"
     end
-    if params[:list_desc].present?
+    if params[:list_desc]
       method_chain_str += ".order(created_at: :desc)"
     end
-    if params[:tasks_mine].present?
+    if params[:tasks_mine]
       method_chain_str += ".where(user_id: current_user)"
     end
     if params[:outdated_tasks]
