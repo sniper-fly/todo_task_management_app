@@ -8,8 +8,8 @@
     <%= label_tag :comp_tasks, '完了タスクも表示する' %><br>
     <%= check_box_tag :list_desc, true, params[:list_desc].present? ? true : false %>
     <%= label_tag :list_desc, '新しい順で並べる' %><br>
-    <%= check_box_tag :tasks_mine, true, params[:tasks_mine].present? ? true : false %>
-    <%= label_tag :tasks_mine, '自分に割り当てられたタスクを表示' %><br>
+    <%= collection_select :task_assignee, :user_id, User.all, :id, :name, include_blank: true, selected: @selected_user %>
+    <%= label_tag :task_assignee, 'に割り当てられたタスクを表示' %><br>
     <%= submit_tag '検索', name: nil %>
   <% end %>
 

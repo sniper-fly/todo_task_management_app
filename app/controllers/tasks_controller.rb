@@ -4,6 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
+    @selected_user = get_selected_user_from_params
     @tasks = eval(generate_method_chain_str_to_get_specific_tasks)
   end
 
@@ -92,9 +93,7 @@ class TasksController < ApplicationController
   def generate_method_chain_str_to_get_specific_tasks
     method_chain_str = "Task.all"
 
-    if params[:comp_tasks]
-      # do nothing
-    else
+    if params[:comp_tasks].nil?
       method_chain_str += ".where.not(status: Task.statuses[:done])"
     end
     if params[:list_desc]
@@ -103,6 +102,12 @@ class TasksController < ApplicationController
     if params[:tasks_mine]
       method_chain_str += ".where(user_id: current_user)"
     end
+    if params[:task_assignee].present? && params[:task_assignee][:user_id].present?
+      task_assignee = params[:task_assignee][:user_id]
+      if User.all.where(id: task_assignee).present?
+        method_chain_str += ".where(user_id: #{task_assignee})"
+      end
+    end
     if params[:outdated_tasks]
       method_chain_str += ".where(deadline: ..Time.current)"
     end
@@ -110,4 +115,15 @@ class TasksController < ApplicationController
     method_chain_str += ".includes(:user)"
     return method_chain_str
   end
+
+  def get_selected_user_from_params
+    if params[:task_assignee].present? && params[:task_assignee][:user_id].present?
+      selected_user_id = params[:task_assignee][:user_id]
+      if User.all.where(id: selected_user_id).present?
+        return selected_user_id
+      end
+    end
+    return nil
+  end
+
 end
