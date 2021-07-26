@@ -4,17 +4,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    if params[:show_comp_task].present?
-      @tasks = Task.all.order(created_at: :asc).includes(:user)
-    elsif params[:list_desc].present?
-      @tasks = Task.all.order(created_at: :desc).includes(:user).where.not(status: Task.statuses[:done])
-    elsif params[:list_outdated_task].present?
-      @tasks = Task.index_all.where(deadline: ..Time.current)
-    elsif params[:list_tasks_todo].present?
-      @tasks = Task.index_all.where(user_id: current_user)
-    else
-      @tasks = Task.index_all
-    end
+    eval(tasks_index)
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -97,5 +87,25 @@ class TasksController < ApplicationController
 
   def assignment_params
     params.require(:task).permit(:user_id)
+  end
+
+  def tasks_index
+    meta_tasks_str = "@tasks = Task.all"
+    if params[:comp_tasks].present?
+      # do nothing
+    else
+      meta_tasks_str += ".where.not(status: Task.statuses[:done])"
+    end
+    if params[:list_desc].present?
+      meta_tasks_str += ".order(created_at: :desc)"
+    end
+    if params[:tasks_mine].present?
+      meta_tasks_str += ".where(user_id: current_user)"
+    end
+    if params[:outdated_tasks]
+      meta_tasks_str += ".where(deadline: ..Time.current)"
+    end
+    meta_tasks_str += ".includes(:user)"
+    return meta_tasks_str
   end
 end

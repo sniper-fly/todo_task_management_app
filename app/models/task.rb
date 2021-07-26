@@ -32,8 +32,8 @@ class Task < ApplicationRecord
   scope :index_all, -> {
     all
       .order(created_at: :asc)
-      .includes(:user)
       .where.not(status: Task.statuses[:done])
+      .includes(:user)
   }
 
 end

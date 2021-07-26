@@ -1,9 +1,17 @@
 <div class="container">
   <h1>タスク一覧</h1>
-  <%= link_to '完了タスクも表示する', tasks_path(show_comp_task: true) %><br>
-  <%= link_to '降順に並び替える', tasks_path(list_desc: true) %><br>
-  <%= link_to '期限切れタスクを表示', tasks_path(list_outdated_task: true) %><br>
-  <%= link_to '自分に割り当てられたタスクを表示', tasks_path(list_tasks_todo: true) %>
+
+  <%= form_tag tasks_path, method: :get do %>
+    <%= check_box_tag :outdated_tasks, true, params[:outdated_tasks].present? ? true : false %>
+    <%= label_tag :outdated_tasks, '期限切れタスクのみを表示' %><br>
+    <%= check_box_tag :comp_tasks, true, params[:comp_tasks].present? ? true : false %>
+    <%= label_tag :comp_tasks, '完了タスクも表示する' %><br>
+    <%= check_box_tag :list_desc, true, params[:list_desc].present? ? true : false %>
+    <%= label_tag :list_desc, '新しい順で並べる' %><br>
+    <%= check_box_tag :tasks_mine, true, params[:tasks_mine].present? ? true : false %>
+    <%= label_tag :tasks_mine, '自分に割り当てられたタスクを表示' %><br>
+    <%= submit_tag '検索', name: nil %>
+  <% end %>
 
   <%= render 'index_page' %>
 </div>
